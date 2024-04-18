@@ -1,0 +1,26 @@
+class Tank:
+    def __init__(self, name, health, armor, damage):
+        self.name = name
+        self.health = health
+        self.armor = armor
+        self.damage = damage
+
+    def attack(self, target):
+        if self.health > 0:
+            damage_dealt = self.damage - target.armor
+            if damage_dealt > 0:
+                target.health -= damage_dealt
+                print(f"{self.name} deals {damage_dealt} damage to {target.name}.")
+                if target.health <= 0:
+                    print(f"{target.name} has been destroyed.")
+            else:
+                print(f"{self.name}'s attack has no effect on {target.name}.")
+        else:
+            print(f"{self.name} cannot attack because it has been destroyed.")
+
+# Example usage
+tank1 = Tank("Tank 1", 100, 20, 30)
+tank2 = Tank("Tank 2", 120, 15, 25)
+
+tank1.attack(tank2)
+tank2.attack(tank1)
